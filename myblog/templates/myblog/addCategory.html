@@ -1,0 +1,18 @@
+{% extends 'myblog/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h2>Add Category..</h2>
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button class="btn btn-primary">Add Category</button>
+    </form>
+</div>
+{% else %}
+<h2>you can not allowed!please login</h2>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'myblog/base.html' %}
+
+{% block content %}
+{% if category_posts %}
+<h2>{{cats}} posts</h2>
+<ul>
+{%for x in category_posts %}
+
+
+    <li style="text-decoration: none;">
+        <h4> <i class="fa fa-user" style="font-size:30px; "></i> {{x.author}}</h4>
+         
+           <div class="card" style=" width: 45rem; ">
+             {% if x.header_image %}
+             <img src="{{ x.header_image.url }}" class="card-img-top" alt="..." style="height: 24rem;">
+             {% endif %}
+             <div class="card-body">
+               <h5 class="card-title"> <a href="{% url 'details' x.pk %}">{{x.title}}</a><small class="d-flex float-right"> {{x.pdate}}&nbsp;<a href="{% url 'details' x.pk %}" class="d-flex float-right"> view/like post here!</a></small></h5>
+   
+               <p class="card-text"> {{x.body|slice:":200"|safe}} <small><a href="{% url 'details' x.pk %}">..readmore</a></small></p>
+             </div>
+             <ul class="list-group list-group-flush">
+               <li class="list-group-item">Category :<a href="{% url 'category' x.category %}">{{x.category}}</a> 
+                 Check posts of this category? <a href="{% url 'category' x.category %}">click here!</a> </li>
+             </ul>
+             
+                 {% if user.id == x.author.id %} 
+                 <div class="card-body">
+                 <a href="{% url 'deletepost' x.pk %}" class="card-link float-right">Delete</a>
+                 <a href="{% url 'updatepost' x.pk %}" class="card-link">Edit</a>
+                 </div>
+                 {% endif %}
+             
+           </div>
+       </li>
+
+{% endfor %}
+</ul>
+{% else %}
+   <h3>Sorry! No posts of this category yet!!</h3>
+{% endif %}
+
+{% endblock %}
