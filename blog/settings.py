@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u_7c&1!3^%48v5qalv9$+o57w9i7onil=2)0drk%)*y-c%6#@4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['blogger-swenikareddy.herokuapp.com']
 
